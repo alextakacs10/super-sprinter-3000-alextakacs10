@@ -63,9 +63,10 @@ def updatedata():
     for entry in new_entries:
         if entry[0] == updated_entry[0]:
             entry = updated_entry
+    newlist = [";".join(new_entry) for new_entry in new_entries]
 
     with open("data.csv", "w", encoding="utf-8") as datafile:
-        datafile.write(",".join(new_entries))
+        datafile.writelines(",".join(newlist) + "\n")
     return redirect("/list")
 
 
