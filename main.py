@@ -49,7 +49,7 @@ def edit_story(id_number):
 
 @app.route("/updatedata/", methods=["POST"])
 def updatedata():
-    id_number = 0
+    id_number = 2
     st_title = request.form["st_title"]
     usr_story = request.form["usr_story"]
     acc_crit = request.form["acc_crit"]
@@ -63,10 +63,10 @@ def updatedata():
     for entry in new_entries:
         if entry[0] == updated_entry[0]:
             entry = updated_entry
-    newlist = [";".join(new_entry) for new_entry in new_entries]
 
     with open("data.csv", "w", encoding="utf-8") as datafile:
-        datafile.writelines(",".join(newlist) + "\n")
+        for entry in new_entries:
+            datafile.write(";".join(entry) + "\n")
     return redirect("/list")
 
 
