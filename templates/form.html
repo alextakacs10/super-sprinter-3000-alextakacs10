@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if id_number %}
+<h1>User Story Manager - Edit</h1>
+<form action="/updatedata/" method="POST">
+    <input type="hidden" name="id_number" value="{{ entry_needed[0] }}">
+
+    <p><label for="story_title">Story title</label><br>
+    <input type="text" name="st_title" id="story_title" value="{{ entry_needed[1] }}"></p>
+
+    <p><label for="user_story">User story</label><br>
+    <textarea name="usr_story" id="user_story" rows="4">{{ entry_needed[2] }}</textarea></p>
+
+    <p><label for="accept_criteria">Acceptance criteria</label><br>
+    <textarea name="acc_crit" id="accept_criteria" rows="4">{{ entry_needed[3] }}</textarea></p>
+
+    <p><label for="business_value">Business Value</label><br>
+    <input type="number" name="bus_val" id="business_value" value="{{ entry_needed[4] }}" min="100" max="1500" step="100"></p>
+
+    <p><label for="estimation">Estimation (h)</label><br>
+    <input type="number" name="estimation_h" id="estimation" value="{{ entry_needed[5] }}" min="0.5" max="40" step="0.5"></p>
+
+    <p><label for="satus">Status</label><br>
+    <select name="status" id="status">
+        {% if entry_needed[6]=="planning" %}
+        <option value="planning" selected>Planning</option>
+        {% elif entry_needed[6]=="todo" %}
+        <option value="todo" selected>TODO</option>
+        {% elif entry_needed[6]=="wip" %}
+        <option value="wip" selected>In progress</option>
+        {% elif entry_needed[6]=="review" %}
+        <option value="review" selected>Review</option>
+        {% elif entry_needed[6]=="done" %}
+        <option value="done" selected>Done</option>
+        {% endif %}
+    </select>
+    </p>
+
+    <input type="submit" value="Update">
+</form>
+{% else %}
+<h1>User Story Manager - Add new entry</h1>
+<form action="/savedata/" method="POST">
+    <input type="hidden" name="id_number" value=>
+
+    <p><label for="story_title">Story title</label><br>
+    <input type="text" name="st_title" id="story_title"></p>
+
+    <p><label for="user_story">User story</label><br>
+    <textarea name="usr_story" id="user_story" rows="4"></textarea></p>
+
+    <p><label for="accept_criteria">Acceptance criteria</label><br>
+    <textarea name="acc_crit" id="accept_criteria" rows="4"></textarea></p>
+
+    <p><label for="business_value">Business Value</label><br>
+    <input type="number" name="bus_val" id="business_value" min="100" max="1500" step="100"></p>
+
+    <p><label for="estimation">Estimation (h)</label><br>
+    <input type="number" name="estimation_h" id="estimation" min="0.5" max="40" step="0.5"></p>
+
+    <p><label for="satus">Status</label><br>
+    <select name="status" id="status">
+        <option value="planning">Planning</option>
+        <option value="todo">TODO</option>
+        <option value="wip">In progress</option>
+        <option value="review">Review</option>
+        <option value="done">Done</option>
+    </select>
+    </p>
+
+    <input type="submit" value="Create">
+</form>
+{% endif %}
+{% endblock %}

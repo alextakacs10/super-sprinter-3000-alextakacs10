@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+        <title>Super Sprinter 3000 - {{ title }}</title>
+        {% else %}
+        <title>Super Sprinter 3000</title>
+        {% endif %}
+        <meta charset="utf-8">
+    </head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

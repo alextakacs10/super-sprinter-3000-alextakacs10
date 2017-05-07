@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>User Story Manager</h1>
+<p><a href="/story">New entry</a></p>
+<table border="1" width="100%">
+    <tr>
+        {% for col_name in columns %}
+        {% if col_name == "ID" %}
+        <td width="50px">{{ col_name }} </td>
+        {% else %}
+        <td width="auto">{{ col_name }} </td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% for entry in entries %}
+        <tr>
+            {% for value in entry %}
+            <td> {{ value }} </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
